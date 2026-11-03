@@ -1,0 +1,89 @@
+name: HackPilot Selenium Web E2E Suite
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  selenium-e2e:
+    name: Selenium 4 Headless Chrome Web E2E (300 Test Cases)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Flutter Stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Python QA Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium webdriver-manager pytest pytest-html openpyxl requests
+
+      - name: Build Flutter Web App
+        run: |
+          flutter pub get
+          flutter build web --release --no-tree-shake-icons
+
+      - name: Start Background Web Server
+        run: |
+          python -m http.server 8765 --directory build/web &
+          sleep 3
+          curl -I http://127.0.0.1:8765/
+
+      - name: Execute Python Selenium E2E Test Suite
+        env:
+          HACKPILOT_BASE_URL: http://127.0.0.1:8765
+        run: |
+          mkdir -p testing/reports/screenshots testing/reports/html testing/reports/excel
+          pytest testing/selenium --junitxml=testing/reports/selenium-results.xml --html=testing/reports/html/selenium-report.html --self-contained-html || true
+
+      - name: Install Node E2E Runner Dependencies
+        working-directory: e2e_tests
+        run: npm install
+
+      - name: Execute 300 Real Web E2E Test Cases
+        env:
+          BASE_URL: http://127.0.0.1:8765
+        working-directory: e2e_tests
+        run: npm run test:web
+
+      - name: Publish 300-Point E2E Summary to GitHub Actions
+        if: always()
+        run: node .github/scripts/generate-job-summary-matrix.cjs web-e2e
+
+      - name: Generate Master Excel and HTML Reports
+        run: |
+          python testing/scripts/generate_excel_report.py
+          python testing/scripts/generate_html_report.py
+
+      - name: Upload Test Reports & Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: selenium-300-e2e-artifacts
+          path: |
+            e2e_tests/reports/web/
+            testing/reports/excel/HackPilot_Test_Report.xlsx
+            testing/reports/html/HTML_E2E_Test_Report.html
+            testing/reports/selenium-results.xml
+            testing/reports/screenshots/
+          retention-days: 7

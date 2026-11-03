@@ -18,6 +18,20 @@ class Hackathon {
   final String? translatedTitle;
   final String? translatedDescription;
 
+  // Expanded Hackathon Details & Event Metadata
+  final String officialWebsite;
+  final String startDate;
+  final String endDate;
+  final String submissionDeadline;
+  final List<String> themes;
+  final String eligibility;
+  final String problemStatements;
+  final String judgingCriteria;
+  final String requiredSkills;
+  final String registrationInstructions;
+  final String contactInfo;
+  final String venue;
+
   Hackathon({
     required this.id,
     required this.title,
@@ -35,6 +49,18 @@ class Hackathon {
     this.country = '',
     this.translatedTitle,
     this.translatedDescription,
+    this.officialWebsite = '',
+    this.startDate = '',
+    this.endDate = '',
+    this.submissionDeadline = '',
+    this.themes = const [],
+    this.eligibility = '',
+    this.problemStatements = '',
+    this.judgingCriteria = '',
+    this.requiredSkills = '',
+    this.registrationInstructions = '',
+    this.contactInfo = '',
+    this.venue = '',
   });
 
   factory Hackathon.fromMap(String id, Map<String, dynamic> data) {
@@ -56,6 +82,31 @@ class Hackathon {
     final mode = parseMode(data, locationHint: rawLocationHint);
     final location = parseLocation(data, modeHint: mode);
     final components = parseComponents(data, location);
+
+    List<String> parseList(dynamic value) {
+      if (value is List) {
+        return value
+            .map((e) => e?.toString().trim() ?? '')
+            .where((e) => e.isNotEmpty)
+            .toList();
+      }
+      if (value is String && value.trim().isNotEmpty) {
+        return value
+            .split(RegExp(r'[,|]'))
+            .map((e) => e.trim())
+            .where((e) => e.isNotEmpty)
+            .toList();
+      }
+      return const [];
+    }
+
+    final rawOfficial = textValue(
+      data['officialWebsite'] ??
+          data['website'] ??
+          data['officialUrl'] ??
+          data['eventUrl'] ??
+          data['url'],
+    );
 
     return Hackathon(
       id: id,
@@ -98,6 +149,44 @@ class Hackathon {
       country: components.country,
       translatedTitle: data['translatedTitle']?.toString(),
       translatedDescription: data['translatedDescription']?.toString(),
+      officialWebsite: rawOfficial,
+      startDate: textValue(
+        data['startDate'] ?? data['startAt'] ?? data['startsAt'] ?? data['eventDate'],
+      ),
+      endDate: textValue(
+        data['endDate'] ?? data['endAt'] ?? data['endsAt'],
+      ),
+      submissionDeadline: textValue(
+        data['submissionDeadline'] ??
+            data['submissionDate'] ??
+            data['submissionEnd'] ??
+            data['submissionClosesAt'],
+      ),
+      themes: parseList(data['themes'] ?? data['tags'] ?? data['categories']),
+      eligibility: textValue(
+        data['eligibility'] ?? data['whoCanParticipate'] ?? data['eligibilityCriteria'],
+      ),
+      problemStatements: textValue(
+        data['problemStatements'] ??
+            data['challenges'] ??
+            data['problemStatement'] ??
+            data['tracks'],
+      ),
+      judgingCriteria: textValue(
+        data['judgingCriteria'] ?? data['criteria'] ?? data['evaluationCriteria'],
+      ),
+      requiredSkills: textValue(
+        data['requiredSkills'] ?? data['skills'] ?? data['technologies'],
+      ),
+      registrationInstructions: textValue(
+        data['registrationInstructions'] ?? data['howToRegister'] ?? data['instructions'],
+      ),
+      contactInfo: textValue(
+        data['contactInfo'] ?? data['contact'] ?? data['email'] ?? data['supportEmail'],
+      ),
+      venue: textValue(
+        data['venue'] ?? data['venueName'] ?? data['venue_name'],
+      ),
     );
   }
 
@@ -119,6 +208,18 @@ class Hackathon {
     String? country,
     String? translatedTitle,
     String? translatedDescription,
+    String? officialWebsite,
+    String? startDate,
+    String? endDate,
+    String? submissionDeadline,
+    List<String>? themes,
+    String? eligibility,
+    String? problemStatements,
+    String? judgingCriteria,
+    String? requiredSkills,
+    String? registrationInstructions,
+    String? contactInfo,
+    String? venue,
   }) {
     return Hackathon(
       id: id ?? this.id,
@@ -137,6 +238,18 @@ class Hackathon {
       country: country ?? this.country,
       translatedTitle: translatedTitle ?? this.translatedTitle,
       translatedDescription: translatedDescription ?? this.translatedDescription,
+      officialWebsite: officialWebsite ?? this.officialWebsite,
+      startDate: startDate ?? this.startDate,
+      endDate: endDate ?? this.endDate,
+      submissionDeadline: submissionDeadline ?? this.submissionDeadline,
+      themes: themes ?? this.themes,
+      eligibility: eligibility ?? this.eligibility,
+      problemStatements: problemStatements ?? this.problemStatements,
+      judgingCriteria: judgingCriteria ?? this.judgingCriteria,
+      requiredSkills: requiredSkills ?? this.requiredSkills,
+      registrationInstructions: registrationInstructions ?? this.registrationInstructions,
+      contactInfo: contactInfo ?? this.contactInfo,
+      venue: venue ?? this.venue,
     );
   }
 
@@ -642,7 +755,276 @@ class Hackathon {
         'country': country,
         if (translatedTitle != null) 'translatedTitle': translatedTitle,
         if (translatedDescription != null) 'translatedDescription': translatedDescription,
+        if (officialWebsite.isNotEmpty) 'officialWebsite': officialWebsite,
+        if (startDate.isNotEmpty) 'startDate': startDate,
+        if (endDate.isNotEmpty) 'endDate': endDate,
+        if (submissionDeadline.isNotEmpty) 'submissionDeadline': submissionDeadline,
+        if (themes.isNotEmpty) 'themes': themes,
+        if (eligibility.isNotEmpty) 'eligibility': eligibility,
+        if (problemStatements.isNotEmpty) 'problemStatements': problemStatements,
+        if (judgingCriteria.isNotEmpty) 'judgingCriteria': judgingCriteria,
+        if (requiredSkills.isNotEmpty) 'requiredSkills': requiredSkills,
+        if (registrationInstructions.isNotEmpty) 'registrationInstructions': registrationInstructions,
+        if (contactInfo.isNotEmpty) 'contactInfo': contactInfo,
+        if (venue.isNotEmpty) 'venue': venue,
       };
+
+  /// Verified official event website URL if available.
+  String get verifiedOfficialWebsite {
+    final site = officialWebsite.trim();
+    if (site.isNotEmpty && !isPlaceholder(site)) {
+      if (site.startsWith('http://') || site.startsWith('https://')) return site;
+      if (site.contains('.')) return 'https://$site';
+    }
+    final reg = registrationLink.trim();
+    if (reg.isNotEmpty && !isPlaceholder(reg)) {
+      if (reg.startsWith('http://') || reg.startsWith('https://')) return reg;
+      if (reg.contains('.')) return 'https://$reg';
+    }
+    return '';
+  }
+
+  /// Whether a verified website link is present.
+  bool get hasVerifiedWebsite => verifiedOfficialWebsite.isNotEmpty;
+
+  /// Display venue name, falling back to location-derived venue if empty.
+  String get displayVenue {
+    if (venue.trim().isNotEmpty && !isPlaceholder(venue)) {
+      return venue.trim();
+    }
+    return '';
+  }
+
+  /// Intelligent theme resolution: returns structured themes or extracts common domain tags.
+  List<String> get resolvedThemes {
+    if (themes.isNotEmpty) {
+      return themes;
+    }
+    final combined = '$title $description'.toLowerCase();
+    final detected = <String>[];
+    if (combined.contains('ai') ||
+        combined.contains('machine learning') ||
+        combined.contains('deep learning') ||
+        combined.contains('neural') ||
+        combined.contains('llm') ||
+        combined.contains('agent')) {
+      detected.add('AI & Machine Learning');
+    }
+    if (combined.contains('web') ||
+        combined.contains('full stack') ||
+        combined.contains('frontend') ||
+        combined.contains('backend')) {
+      detected.add('Web Development');
+    }
+    if (combined.contains('mobile') ||
+        combined.contains('flutter') ||
+        combined.contains('android') ||
+        combined.contains('ios')) {
+      detected.add('Mobile App Dev');
+    }
+    if (combined.contains('cloud') ||
+        combined.contains('aws') ||
+        combined.contains('gcp') ||
+        combined.contains('azure') ||
+        combined.contains('devops')) {
+      detected.add('Cloud & DevOps');
+    }
+    if (combined.contains('cyber') ||
+        combined.contains('security') ||
+        combined.contains('ctf') ||
+        combined.contains('infosec')) {
+      detected.add('Cybersecurity');
+    }
+    if (combined.contains('blockchain') ||
+        combined.contains('web3') ||
+        combined.contains('crypto') ||
+        combined.contains('smart contract') ||
+        combined.contains('solana') ||
+        combined.contains('ethereum')) {
+      detected.add('Web3 & Blockchain');
+    }
+    if (combined.contains('iot') ||
+        combined.contains('hardware') ||
+        combined.contains('robotics') ||
+        combined.contains('sensor') ||
+        combined.contains('arduino') ||
+        combined.contains('embedded')) {
+      detected.add('IoT & Robotics');
+    }
+    if (combined.contains('fintech') ||
+        combined.contains('finance') ||
+        combined.contains('payment') ||
+        combined.contains('banking')) {
+      detected.add('FinTech');
+    }
+    if (combined.contains('health') ||
+        combined.contains('medical') ||
+        combined.contains('biotech')) {
+      detected.add('HealthTech');
+    }
+    if (combined.contains('climate') ||
+        combined.contains('sustainab') ||
+        combined.contains('green') ||
+        combined.contains('clean energy')) {
+      detected.add('Climate & CleanTech');
+    }
+    if (detected.isEmpty) {
+      detected.add('Open Innovation');
+    }
+    return detected;
+  }
+
+  /// Extracts section content under markdown or plaintext headings matching any keyword.
+  String? extractSectionFromDescription(List<String> keywords) {
+    if (description.trim().isEmpty) return null;
+    final lines = description.replaceAll('\r', '').split('\n');
+    final headingPattern = RegExp(r'^\s{0,3}#{0,3}\s*([^:]+?)\s*:?\s*(.*)$', caseSensitive: false);
+    final stopHeadings = [
+      'overview',
+      'about',
+      'challenge',
+      'challenges',
+      'problem statement',
+      'problem statements',
+      'objectives',
+      'themes',
+      'tracks',
+      'eligibility',
+      'who can participate',
+      'prizes',
+      'prize',
+      'schedule',
+      'agenda',
+      'important dates',
+      'rules',
+      'what to bring',
+      'sponsors',
+      'resources',
+      'submission',
+      'judging criteria',
+      'criteria',
+      'skills',
+      'technologies',
+      'contact',
+      'contact us'
+    ];
+
+    for (var i = 0; i < lines.length; i++) {
+      final match = headingPattern.firstMatch(lines[i].trim());
+      if (match == null) continue;
+      final heading = match.group(1)!.trim().toLowerCase();
+      if (!keywords.any((kw) => heading == kw || heading.startsWith('$kw ') || heading.endsWith(' $kw'))) {
+        continue;
+      }
+
+      final content = <String>[];
+      final inline = match.group(2)?.trim() ?? '';
+      if (inline.isNotEmpty) content.add(inline);
+
+      for (var j = i + 1; j < lines.length; j++) {
+        final next = lines[j].trim();
+        final nextMatch = headingPattern.firstMatch(next);
+        final nextHeading = nextMatch?.group(1)?.trim().toLowerCase() ?? '';
+        if (nextHeading.isNotEmpty && stopHeadings.contains(nextHeading) && !keywords.contains(nextHeading)) {
+          break;
+        }
+        content.add(lines[j]);
+      }
+      final result = content.join('\n').trim();
+      if (result.isNotEmpty && !isPlaceholder(result)) {
+        return result;
+      }
+    }
+    return null;
+  }
+
+  /// Resolved Problem Statements
+  String? get resolvedProblemStatements {
+    if (problemStatements.trim().isNotEmpty && !isPlaceholder(problemStatements)) {
+      return problemStatements.trim();
+    }
+    return extractSectionFromDescription([
+      'problem statement',
+      'problem statements',
+      'challenges',
+      'challenge',
+      'tracks',
+      'problem domain',
+    ]);
+  }
+
+  /// Resolved Eligibility
+  String? get resolvedEligibility {
+    if (eligibility.trim().isNotEmpty && !isPlaceholder(eligibility)) {
+      return eligibility.trim();
+    }
+    return extractSectionFromDescription([
+      'eligibility',
+      'who can participate',
+      'eligibility criteria',
+      'participation requirements',
+      'requirements',
+    ]);
+  }
+
+  /// Resolved Judging Criteria
+  String? get resolvedJudgingCriteria {
+    if (judgingCriteria.trim().isNotEmpty && !isPlaceholder(judgingCriteria)) {
+      return judgingCriteria.trim();
+    }
+    return extractSectionFromDescription([
+      'judging criteria',
+      'evaluation criteria',
+      'how you will be judged',
+      'criteria',
+      'scoring',
+    ]);
+  }
+
+  /// Resolved Required Skills
+  String? get resolvedRequiredSkills {
+    if (requiredSkills.trim().isNotEmpty && !isPlaceholder(requiredSkills)) {
+      return requiredSkills.trim();
+    }
+    return extractSectionFromDescription([
+      'required skills',
+      'skills',
+      'technologies',
+      'tech stack',
+      'tools',
+      'prerequisites',
+    ]);
+  }
+
+  /// Resolved Registration Instructions
+  String? get resolvedRegistrationInstructions {
+    if (registrationInstructions.trim().isNotEmpty && !isPlaceholder(registrationInstructions)) {
+      return registrationInstructions.trim();
+    }
+    return extractSectionFromDescription([
+      'registration instructions',
+      'how to register',
+      'instructions',
+      'how to apply',
+      'application process',
+    ]);
+  }
+
+  /// Resolved Contact Info
+  String? get resolvedContactInfo {
+    if (contactInfo.trim().isNotEmpty && !isPlaceholder(contactInfo)) {
+      return contactInfo.trim();
+    }
+    return extractSectionFromDescription([
+      'contact',
+      'contact us',
+      'contact information',
+      'queries',
+      'support',
+      'community',
+      'discord',
+    ]);
+  }
 
   /// Extracts common API, Open Graph, CDN, and Firestore image fields.
   static String imageUrlFrom(Map<String, dynamic> data) {

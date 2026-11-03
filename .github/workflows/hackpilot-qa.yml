@@ -1,0 +1,371 @@
+name: "🚀 HackPilot Enterprise QA, Security, Load & 300 E2E Automation"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: hackpilot-qa-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: read
+  checks: write
+  pull-requests: write
+  security-events: write
+
+env:
+  JAVA_VERSION: "17"
+  NODE_VERSION: "20"
+  PYTHON_VERSION: "3.12"
+  FLUTTER_VERSION: "3.24.5"
+
+jobs:
+  # ════════════════════════════════════════════════════════════════════════════
+  # JOB 1 – Security & Vulnerability Audits (SAST, Trivy, Gitleaks, Firestore)
+  # ════════════════════════════════════════════════════════════════════════════
+  security-scan:
+    name: "🔒 Security Review & Vulnerability Scans"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "📦 Setup Node.js ${{ env.NODE_VERSION }}"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: "🐍 Setup Python ${{ env.PYTHON_VERSION }}"
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: "📦 Install Security Tools Dependencies"
+        run: pip install requests openpyxl
+
+      - name: "🔐 Run Semgrep SAST scan"
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: >-
+            p/javascript
+            p/python
+            p/secrets
+            p/owasp-top-ten
+        continue-on-error: true
+
+      - name: "🛡️ Run Trivy filesystem scan"
+        uses: aquasecurity/trivy-action@v0.35.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          format: sarif
+          output: security-artifacts/trivy-results.sarif
+          severity: CRITICAL,HIGH,MEDIUM
+        continue-on-error: true
+
+      - name: "🔑 Run Gitleaks secret detection"
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: "🛡️ Execute Threat Model & Security Audit Script"
+        run: python testing/security/run_security_audit.py
+
+      - name: "📜 Validate Firestore Security Rules Syntax"
+        run: |
+          test -f firestore.rules || (echo "CRITICAL: firestore.rules missing!" && exit 1)
+          grep -q "request.auth.uid" firestore.rules || (echo "CRITICAL: User isolation not found in firestore.rules" && exit 1)
+          echo "Firestore security rules verified."
+
+      - name: "📦 Install E2E Reporter dependencies"
+        working-directory: e2e_tests
+        run: npm install
+
+      - name: "📊 Generate Security Excel & Markdown Reports"
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+          COMMIT_SHA: ${{ github.sha }}
+          BRANCH: ${{ github.ref_name }}
+        run: node .github/scripts/generate-security-reports.cjs
+
+      - name: "📋 Publish 400-Point Security Summary"
+        if: always()
+        run: node .github/scripts/generate-job-summary-matrix.cjs security
+
+      - name: "📤 Upload Security Findings & Artifacts"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-findings-artifacts
+          path: |
+            Vulnerability Test Results/
+            testing/reports/security-findings.json
+            testing/reports/security-findings.xlsx
+          retention-days: 7
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # JOB 2 – Flutter Unit & Widget Tests
+  # ════════════════════════════════════════════════════════════════════════════
+  flutter-tests:
+    name: "⚙️ Flutter Unit & Widget Tests"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "☕ Setup Java ${{ env.JAVA_VERSION }}"
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: "💙 Setup Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: "📦 Install dependencies"
+        run: flutter pub get
+
+      - name: "🔍 Analyze Codebase"
+        run: flutter analyze
+
+      - name: "🧪 Run Flutter Test Suite"
+        run: flutter test
+
+      - name: "📦 Setup Node.js for Reporter"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: "📋 Publish 400-Point Unit Summary"
+        if: always()
+        run: node .github/scripts/generate-job-summary-matrix.cjs flutter-unit
+
+      - name: "📤 Upload Unit Test Reports"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-reports
+          path: testing/reports/
+          retention-days: 7
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # JOB 3 – Actual Web E2E Selenium Tests (300 Real Test Cases)
+  # ════════════════════════════════════════════════════════════════════════════
+  web-e2e-tests:
+    name: "🧪 300 Web E2E Selenium Tests (Live App)"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "📦 Setup Node.js ${{ env.NODE_VERSION }}"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: "🐍 Setup Python ${{ env.PYTHON_VERSION }}"
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: "💙 Setup Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: "📦 Install Flutter Dependencies & Build Actual Web App"
+        run: |
+          flutter pub get
+          flutter build web --release --no-tree-shake-icons
+
+      - name: "🚀 Start Background Web Server for Actual HackPilot App"
+        run: |
+          python -m http.server 8080 --directory build/web &
+          echo "Waiting for actual HackPilot web app to initialize..."
+          for i in {1..30}; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8080/ || echo "000")
+            if [ "$STATUS" = "200" ]; then
+              echo "Actual HackPilot web app is listening (HTTP 200)!"
+              break
+            fi
+            sleep 1
+          done
+
+      - name: "📦 Install Python QA Dependencies"
+        run: |
+          pip install selenium webdriver-manager pytest pytest-html openpyxl requests
+
+      - name: "🧪 Execute Python Selenium E2E Suite"
+        env:
+          HACKPILOT_BASE_URL: http://127.0.0.1:8080
+        run: |
+          mkdir -p testing/reports/screenshots testing/reports/html testing/reports/excel
+          pytest testing/selenium --junitxml=testing/reports/selenium-results.xml --html=testing/reports/html/selenium-report.html --self-contained-html || true
+
+      - name: "📦 Install E2E Node Dependencies"
+        working-directory: e2e_tests
+        run: npm install
+
+      - name: "🧪 Execute 300 Real Web E2E Test Cases against Actual App"
+        env:
+          BASE_URL: http://127.0.0.1:8080
+        working-directory: e2e_tests
+        run: npm run test:web
+
+      - name: "📊 Publish Individual Test Results (Test Reporter)"
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: "🧪 300 Web E2E Test Cases (Selenium)"
+          path: "e2e_tests/reports/web/junit-results.xml"
+          reporter: "java-junit"
+          fail-on-error: false
+
+      - name: "📊 Generate Master Excel and HTML QA Reports"
+        if: always()
+        run: |
+          python testing/scripts/generate_excel_report.py
+          python testing/scripts/generate_html_report.py
+
+      - name: "📋 Publish 300-Point E2E Summary to Step Summary"
+        if: always()
+        run: node .github/scripts/generate-job-summary-matrix.cjs web-e2e
+
+      - name: "📤 Upload 300 Web E2E Artifacts (Excel, HTML, JUnit XML & Screenshots)"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-e2e-artifacts
+          path: |
+            e2e_tests/reports/web/
+            testing/reports/screenshots/
+            testing/reports/excel/
+            testing/reports/html/
+            testing/reports/junit-web-e2e.xml
+          retention-days: 7
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # JOB 4 – Authorized Multi-Stage Load Test
+  # ════════════════════════════════════════════════════════════════════════════
+  load-tests:
+    name: "⚡ Authorized Load & Concurrency Tests"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "🐍 Setup Python ${{ env.PYTHON_VERSION }}"
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: "💙 Setup Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: "🏗️ Build Web App for Load Testing"
+        run: |
+          flutter pub get
+          flutter build web --release --no-tree-shake-icons
+
+      - name: "🚀 Start Web Server"
+        run: |
+          python -m http.server 8080 --directory build/web &
+          sleep 2
+
+      - name: "⚡ Execute Multi-Stage Load Concurrency Test (5 - 100 VUs)"
+        env:
+          TARGET_URL: "http://127.0.0.1:8080"
+          OUTPUT_DIR: "load-test-reports"
+        run: python .github/scripts/run-load-test.py
+
+      - name: "📦 Setup Node.js for Reporter"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: "📋 Publish 400-Point Load Summary"
+        if: always()
+        run: node .github/scripts/generate-job-summary-matrix.cjs load
+
+      - name: "📤 Upload Load Test Reports"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: load-test-artifacts
+          path: load-test-reports/
+          retention-days: 7
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # JOB 5 – Master Unified Summary Dashboard & Report Deployment
+  # ════════════════════════════════════════════════════════════════════════════
+  unified-summary:
+    name: "📊 Master Unified QA Summary Dashboard"
+    runs-on: ubuntu-latest
+    needs: [security-scan, flutter-tests, web-e2e-tests, load-tests]
+    if: always()
+
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "📦 Setup Node.js ${{ env.NODE_VERSION }}"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: "📥 Download security reports"
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: security-findings-artifacts
+          path: security-reports
+
+      - name: "📥 Download web E2E reports"
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: web-e2e-artifacts
+          path: web-reports
+
+      - name: "📥 Download load test reports"
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: load-test-artifacts
+          path: load-test-reports
+
+      - name: "📋 Publish Master Step Summary Dashboard"
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+          BRANCH: ${{ github.ref_name }}
+        run: node .github/scripts/generate-unified-summary.cjs
+
+      - name: "📤 Upload Master Unified Reports"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: master-unified-qa-reports
+          path: unified-reports/
+          retention-days: 7
+

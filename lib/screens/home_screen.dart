@@ -2083,6 +2083,7 @@ class _HomeScreenState extends State<HomeScreen> {
     context,
     MaterialPageRoute(
       builder: (_) => HackathonDetailsScreen(
+        hackathon: event,
         hackathonId: event.id,
         title: event.title,
         organizer: event.organizer,

@@ -1,0 +1,73 @@
+name: HackPilot k6 Performance Benchmark Suite
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'lib/**'
+      - 'testing/performance/**'
+
+jobs:
+  performance-benchmark:
+    name: k6 Baseline & Multi-Stage Concurrency Load Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Flutter Stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Setup k6 CLI
+        uses: grafana/setup-k6-action@v1
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Flutter Web
+        run: |
+          flutter pub get
+          flutter build web --release --no-tree-shake-icons
+
+      - name: Start Background Web Server
+        run: |
+          python -m http.server 8765 --directory build/web &
+          sleep 3
+
+      - name: Execute k6 Baseline Performance Test (100 VUs / 1 min)
+        run: |
+          mkdir -p testing/reports
+          python testing/performance/run_performance_suite.py
+
+      - name: Execute Multi-Stage Load Concurrency Suite
+        env:
+          TARGET_URL: "http://127.0.0.1:8765"
+          OUTPUT_DIR: "load-test-reports"
+        run: python .github/scripts/run-load-test.py
+
+      - name: Publish 400-Point Load Summary to GitHub Actions
+        if: always()
+        run: node .github/scripts/generate-job-summary-matrix.cjs load
+
+      - name: Upload Performance Metrics & Load Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-load-results
+          path: |
+            load-test-reports/
+            testing/reports/performance-summary.json
+            testing/reports/k6-baseline-summary.json
+          retention-days: 7

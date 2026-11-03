@@ -1,0 +1,95 @@
+name: HackPilot Security & Vulnerability Audit
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * 0' # Weekly Sunday audit
+  workflow_dispatch:
+
+jobs:
+  security-audit:
+    name: DevSecOps Vulnerability, SAST & Secret Protection Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Security Analysis Tools
+        run: |
+          pip install requests openpyxl
+
+      - name: Run Semgrep SAST Scan
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: >-
+            p/javascript
+            p/python
+            p/secrets
+            p/owasp-top-ten
+        continue-on-error: true
+
+      - name: Run Trivy Filesystem Vulnerability Scan
+        uses: aquasecurity/trivy-action@v0.35.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          format: sarif
+          output: security-artifacts/trivy-results.sarif
+          severity: CRITICAL,HIGH,MEDIUM
+        continue-on-error: true
+
+      - name: Run Gitleaks Secret Detection
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Execute Security & Threat Model Audit
+        run: |
+          python testing/security/run_security_audit.py
+
+      - name: Validate Firestore Rules Syntax & Presence
+        run: |
+          test -f firestore.rules || (echo "CRITICAL: firestore.rules missing!" && exit 1)
+          grep -q "request.auth.uid" firestore.rules || (echo "CRITICAL: User isolation not found in firestore.rules" && exit 1)
+          echo "Firestore security rules syntax verified."
+
+      - name: Install E2E Reporter Dependencies
+        working-directory: e2e_tests
+        run: npm install
+
+      - name: Generate Security Reports & Excel Findings
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+          COMMIT_SHA: ${{ github.sha }}
+          BRANCH: ${{ github.ref_name }}
+        run: node .github/scripts/generate-security-reports.cjs
+
+      - name: Publish 400-Point Security Summary to GitHub Actions
+        if: always()
+        run: node .github/scripts/generate-job-summary-matrix.cjs security
+
+      - name: Upload Security Findings & Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-audit-reports
+          path: |
+            Vulnerability Test Results/
+            testing/reports/security-findings.json
+            testing/reports/security-findings.xlsx
+          retention-days: 7

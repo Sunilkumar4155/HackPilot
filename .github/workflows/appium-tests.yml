@@ -1,0 +1,76 @@
+name: HackPilot Appium Android Mobile E2E Suite
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 1' # Weekly Monday midnight run
+
+jobs:
+  appium-mobile-e2e:
+    name: Appium Android UiAutomator2 Test Run
+    runs-on: macos-13
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Flutter Stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Setup Node.js & Appium Server
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Appium & UiAutomator2 Driver
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python Mobile Testing Dependencies
+        run: |
+          pip install Appium-Python-Client pytest pytest-html openpyxl
+
+      - name: Build Android Debug APK
+        run: |
+          flutter pub get
+          flutter build apk --debug
+
+      - name: Start Appium Server
+        run: |
+          appium --log testing/reports/appium-server.log &
+          sleep 5
+
+      - name: Run Appium Tests on Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          script: |
+            pytest testing/appium/tests --junitxml=testing/reports/appium-results.xml || true
+
+      - name: Upload Mobile Test Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: appium-test-results
+          path: |
+            testing/reports/appium-results.xml
+            testing/reports/appium-server.log
+

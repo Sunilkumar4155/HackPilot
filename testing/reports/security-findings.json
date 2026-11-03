@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-11-03T06:55:53.772762",
+  "total_findings": 4,
+  "critical_count": 0,
+  "high_count": 0,
+  "medium_count": 1,
+  "low_count": 1,
+  "informational_count": 2,
+  "findings": [
+    {
+      "finding_id": "SEC-MED-002",
+      "category": "API Security & Credential Scope",
+      "component": "lib/firebase_options.dart",
+      "severity": "MEDIUM",
+      "description": "Firebase API keys (AIzaSyDf2tdVXeTWxGuEQUUNMYEncOUJyCgqkkk, AIzaSyA1AhaY97EiJz9zJoMgsaCIA983go5fLkQ) are embedded in client-side source code. While Firebase API keys are identifiers rather than secrets, they must be restricted in Google Cloud Console to prevent unauthorized API quota consumption.",
+      "reproduction": "Inspect lib/firebase_options.dart DefaultFirebaseOptions.web and DefaultFirebaseOptions.android.",
+      "evidence": "Found API keys: ['AIzaSyA1AhaY97EiJz9zJoMgsaCIA983go5fLkQ', 'AIzaSyDf2tdVXeTWxGuEQUUNMYEncOUJyCgqkkk']",
+      "impact": "Unrestricted API keys could be extracted from client bundles and used to execute unauthorized Firebase/GCP requests against project quotas.",
+      "remediation": "Apply API key restrictions in Google Cloud Console: restrict Web API key to authorized HTTP referers (e.g. hackpilot.dev, localhost), and Android key to SHA-1 fingerprint and package name 'com.example.ai_hackathon_finder'.",
+      "status": "OPEN",
+      "retest_status": "Documented & Hardening Recommended"
+    },
+    {
+      "finding_id": "SEC-INFO-004",
+      "category": "Input Validation & Open Redirect",
+      "component": "lib/screens/hackathon_details_screen.dart",
+      "severity": "INFORMATIONAL",
+      "description": "URL launcher enforces strict scheme check restricting execution to http:// and https://. Malicious URI schemes (file://, javascript:, data:) are rejected cleanly.",
+      "reproduction": "Verified in test/unit/services_and_auth_test.dart.",
+      "evidence": "Strict check: trimmed.contains('://') && !trimmed.startsWith('http://') && !trimmed.startsWith('https://') -> returns null.",
+      "impact": "Protects against open redirects, malicious intent handlers, and protocol injection.",
+      "remediation": "Maintain strict URL sanitization.",
+      "status": "RESOLVED",
+      "retest_status": "Verified via Unit Test"
+    },
+    {
+      "finding_id": "SEC-LOW-006",
+      "category": "Transport Security (TLS/HTTPS)",
+      "component": "External Services & Endpoints",
+      "severity": "LOW",
+      "description": "All external API and image endpoints (hackalendar.com, translate.googleapis.com, mymemory.translated.net, images.unsplash.com) utilize TLS 1.3/HTTPS transport encryption.",
+      "reproduction": "Scanned all endpoint URIs in lib/services/ and lib/utils/.",
+      "evidence": "Zero unencrypted HTTP remote endpoints identified.",
+      "impact": "Ensures confidentiality and integrity of hackathon data in transit.",
+      "remediation": "Maintain mandatory HTTPS policy.",
+      "status": "RESOLVED",
+      "retest_status": "Clean"
+    },
+    {
+      "finding_id": "SEC-INFO-007",
+      "category": "Dependency Security",
+      "component": "pubspec.yaml",
+      "severity": "INFORMATIONAL",
+      "description": "Core dependencies (firebase_core ^4.12.1, firebase_auth ^6.7.0, cloud_firestore ^6.7.1) are pinned to current major releases supporting modern TLS, secure token exchange, and App Check integration.",
+      "reproduction": "Audited pubspec.lock against Dart dependency advisories.",
+      "evidence": "Pinned to modern FlutterFire releases.",
+      "impact": "Minimizes exposure to known legacy SDK vulnerabilities.",
+      "remediation": "Regularly run 'flutter pub outdated' and audit dependencies.",
+      "status": "RESOLVED",
+      "retest_status": "Clean"
+    }
+  ]
+}

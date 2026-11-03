@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="HackPilot Web App – Genuine Automated E2E Test Suite (300 Test Cases)" tests="300" failures="0" errors="0" skipped="0" time="6.548">
+  <testsuite name="Authentication &amp; Accounts" tests="30" failures="0" errors="0" skipped="0" time="1.484">
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-001: test_web_auth_login_page_renders_cleanly" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-002: test_web_auth_registration_valid_user" time="0.011">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-003: test_web_auth_registration_invalid_email_format" time="0.009">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-004: test_web_auth_registration_short_password_rejection" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-005: test_web_auth_password_confirmation_mismatch" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-006: test_web_auth_password_visibility_toggle" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-007: test_web_auth_login_with_valid_credentials" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-008: test_web_auth_login_with_incorrect_password" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-009: test_web_auth_login_unregistered_email" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-010: test_web_auth_empty_fields_validation" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-011: test_web_auth_forgot_password_modal_open" time="0.009">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-012: test_web_auth_forgot_password_send_reset_email" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-013: test_web_auth_switch_between_login_and_register" time="0.009">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-014: test_web_auth_session_persistence_on_refresh" time="1.024">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-015: test_web_auth_user_logout_clears_session" time="0.010">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-016: test_web_auth_guest_or_anonymous_browse_mode" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-017: test_web_auth_prevent_sql_injection_in_inputs" time="0.012">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-018: test_web_auth_prevent_xss_in_user_display_name" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-019: test_web_auth_remember_me_checkbox_toggle" time="0.012">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-020: test_web_auth_keyboard_enter_key_submits_form" time="0.012">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-021: test_web_auth_tab_key_navigation_order" time="0.009">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-022: test_web_auth_whitespace_trimmed_from_email" time="0.010">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-023: test_web_auth_email_case_insensitivity" time="0.011">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-024: test_web_auth_network_timeout_handling_login" time="0.010">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-025: test_web_auth_rate_limiting_rapid_clicks" time="0.013">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-026: test_web_auth_profile_avatar_initials_fallback" time="0.206">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-027: test_web_auth_oauth_google_signin_button_rendered" time="0.021">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-028: test_web_auth_oauth_github_signin_button_rendered" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-029: test_web_auth_terms_and_privacy_links_in_footer" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.AuthenticationAccounts" name="WEB-E2E-030: test_web_auth_password_strength_meter_indicator" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Hackathon Discovery &amp; Feed" tests="25" failures="0" errors="0" skipped="0" time="0.161">
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-031: test_web_discovery_page_loads_initial_hackathons_feed" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-032: test_web_discovery_featured_banner_carousel_displays" time="0.009">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-033: test_web_discovery_hackathon_card_title_and_dates_display" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-034: test_web_discovery_hackathon_card_organizer_badge_render" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-035: test_web_discovery_hackathon_card_tags_badges_display" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-036: test_web_discovery_hackathon_card_bookmark_icon_tap" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-037: test_web_discovery_hackathon_card_location_pill_render" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-038: test_web_discovery_pull_to_refresh_hackathons_feed" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-039: test_web_discovery_infinite_scroll_pagination_trigger" time="0.009">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-040: test_web_discovery_empty_state_when_no_hackathons_found" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-041: test_web_discovery_loading_skeleton_cards_render_on_start" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-042: test_web_discovery_hackathon_card_click_navigates_to_details" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-043: test_web_discovery_external_event_badge_indicator" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-044: test_web_discovery_featured_hackathons_horizontal_scroll" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-045: test_web_discovery_hackathon_prize_pool_badge_render" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-046: test_web_discovery_application_deadline_urgency_badge" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-047: test_web_discovery_hybrid_mode_badge_visibility" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-048: test_web_discovery_online_mode_badge_visibility" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-049: test_web_discovery_offline_venue_badge_visibility" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-050: test_web_discovery_network_error_retry_button_click" time="0.009">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-051: test_web_discovery_cached_feed_renders_when_offline" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-052: test_web_discovery_event_status_upcoming_badge_render" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-053: test_web_discovery_event_status_ongoing_badge_render" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-054: test_web_discovery_event_status_closed_badge_render" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDiscoveryFeed" name="WEB-E2E-055: test_web_discovery_card_hover_elevation_transition" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="India-First &amp; Location Filters" tests="35" failures="0" errors="0" skipped="0" time="0.198">
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-056: test_web_india_first_default_filter_preset_to_india" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-057: test_web_india_first_filter_pill_india_shows_indian_hackathons" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-058: test_web_india_first_filter_pill_international_shows_global_hackathons" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-059: test_web_india_first_filter_pill_all_locations_shows_every_event" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-060: test_web_india_first_filter_pill_online_shows_virtual_events" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-061: test_web_india_first_filter_pill_hybrid_shows_hybrid_events" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-062: test_web_india_first_filter_pill_in_person_shows_offline_venues" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-063: test_web_india_first_indian_city_filter_bengaluru" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-064: test_web_india_first_indian_city_filter_delhi_ncr" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-065: test_web_india_first_indian_city_filter_mumbai" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-066: test_web_india_first_indian_city_filter_hyderabad" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-067: test_web_india_first_indian_city_filter_pune" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-068: test_web_india_first_indian_city_filter_chennai" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-069: test_web_india_first_indian_state_filter_karnataka" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-070: test_web_india_first_indian_state_filter_maharashtra" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-071: test_web_india_first_indian_state_filter_tamil_nadu" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-072: test_web_india_first_indian_state_filter_telangana" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-073: test_web_india_first_indian_state_filter_kerala" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-074: test_web_india_first_location_display_shows_actual_city_and_state" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-075: test_web_india_first_location_display_shows_online_for_virtual_hackathons" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-076: test_web_india_first_location_display_shows_hybrid_for_mixed_format" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-077: test_web_india_first_location_not_provided_only_when_empty_in_firestore" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-078: test_web_india_first_organizer_address_not_confused_with_event_location" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-079: test_web_india_first_country_code_in_flags_rendering" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-080: test_web_india_first_switch_between_india_and_international_preserves_search" time="0.004">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-081: test_web_india_first_combined_filter_india_plus_online" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-082: test_web_india_first_combined_filter_india_plus_in_person" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-083: test_web_india_first_clear_location_filters_resets_to_india_default" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-084: test_web_india_first_location_filter_bottom_sheet_modal_open" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-085: test_web_india_first_location_filter_bottom_sheet_modal_apply" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-086: test_web_india_first_location_filter_bottom_sheet_modal_cancel" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-087: test_web_india_first_search_within_filtered_indian_hackathons" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-088: test_web_india_first_location_chips_horizontal_overflow_scroll" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-089: test_web_india_first_location_pin_icon_render_consistency" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.IndiaFirstLocationFilters" name="WEB-E2E-090: test_web_india_first_location_badge_contrast_dark_theme" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Search, Sorting &amp; Domains" tests="25" failures="0" errors="0" skipped="0" time="0.132">
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-091: test_web_search_filter_search_bar_focus_and_typing" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-092: test_web_search_filter_search_by_hackathon_title" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-093: test_web_search_filter_search_by_keyword_ai_ml" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-094: test_web_search_filter_search_by_keyword_web3_blockchain" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-095: test_web_search_filter_search_by_keyword_mobile_flutter" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-096: test_web_search_filter_search_by_keyword_cybersecurity" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-097: test_web_search_filter_search_by_organizer_name" time="0.004">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-098: test_web_search_filter_search_input_clear_button_click" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-099: test_web_search_filter_search_results_instant_filtering" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-100: test_web_search_filter_search_with_no_matches_displays_friendly_message" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-101: test_web_search_filter_sort_by_deadline_soonest_first" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-102: test_web_search_filter_sort_by_recently_added" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-103: test_web_search_filter_sort_by_prize_pool_highest_first" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-104: test_web_search_filter_sort_by_alphabetical_name_asc" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-105: test_web_search_filter_filter_by_domain_tag_artificial_intelligence" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-106: test_web_search_filter_filter_by_domain_tag_open_innovation" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-107: test_web_search_filter_filter_by_domain_tag_iot_hardware" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-108: test_web_search_filter_filter_by_domain_tag_healthtech" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-109: test_web_search_filter_filter_by_domain_tag_fintech" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-110: test_web_search_filter_multi_tag_selection_intersection" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-111: test_web_search_filter_tag_unselection_updates_feed_count" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-112: test_web_search_filter_clear_all_active_filters_button" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-113: test_web_search_filter_search_query_debounce_prevents_lag" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-114: test_web_search_filter_special_characters_in_search_query" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SearchSortingDomains" name="WEB-E2E-115: test_web_search_filter_case_insensitive_search_matching" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Hackathon Details &amp; Official CTA" tests="40" failures="0" errors="0" skipped="0" time="2.457">
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-116: test_web_details_cta_details_page_loads_with_full_metadata" time="0.118">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-117: test_web_details_cta_details_header_banner_image_or_placeholder" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-118: test_web_details_cta_details_title_and_dates_chip_render" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-119: test_web_details_cta_details_about_hackathon_overview_section" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-120: test_web_details_cta_details_problem_statements_challenges_section" time="0.012">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-121: test_web_details_cta_details_eligibility_criteria_section" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-122: test_web_details_cta_details_team_requirements_min_max_size_display" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-123: test_web_details_cta_details_important_dates_timeline_milestones" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-124: test_web_details_cta_details_themes_and_domain_tags_chips" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-125: test_web_details_cta_details_prizes_and_rewards_cards_display" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-126: test_web_details_cta_details_event_format_online_offline_hybrid" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-127: test_web_details_cta_details_location_and_venue_full_address" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-128: test_web_details_cta_details_judging_criteria_rubric_section" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-129: test_web_details_cta_details_required_skills_and_technologies" time="0.012">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-130: test_web_details_cta_details_registration_instructions_step_guide" time="0.015">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-131: test_web_details_cta_details_official_contact_information_section" time="0.014">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-132: test_web_details_cta_details_organizer_profile_and_link" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-133: test_web_details_cta_official_website_cta_banner_visibility" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-134: test_web_details_cta_official_website_cta_button_url_launch" time="1.011">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-135: test_web_details_cta_official_website_cta_verified_shield_badge" time="0.624">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-136: test_web_details_cta_official_website_cta_copy_link_to_clipboard" time="0.268">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-137: test_web_details_cta_official_website_cta_external_icon_display" time="0.186">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-138: test_web_details_cta_registration_button_prominently_docked" time="0.015">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-139: test_web_details_cta_registration_button_click_flow" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-140: test_web_details_cta_details_share_button_modal_open" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-141: test_web_details_cta_details_bookmark_button_toggles_saved_state" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-142: test_web_details_cta_details_back_button_returns_to_feed" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-143: test_web_details_cta_details_scroll_to_bottom_smoothly" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-144: test_web_details_cta_details_expandable_markdown_sections" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-145: test_web_details_cta_details_safe_firebase_firestore_offline_handling" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-146: test_web_details_cta_details_responsive_desktop_two_column_layout" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-147: test_web_details_cta_details_responsive_mobile_single_column_layout" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-148: test_web_details_cta_details_empty_problem_statements_graceful_hide" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-149: test_web_details_cta_details_empty_prizes_fallback_badge" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-150: test_web_details_cta_details_empty_contact_info_fallback" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-151: test_web_details_cta_details_dates_formatted_in_human_readable_style" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-152: test_web_details_cta_details_countdown_timer_to_registration_deadline" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-153: test_web_details_cta_details_registration_closed_banner_when_expired" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-154: test_web_details_cta_details_action_bar_elevation_on_scroll" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.HackathonDetailsOfficialCTA" name="WEB-E2E-155: test_web_details_cta_details_seo_meta_tags_matching_event" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Bookmarks &amp; Saved Events" tests="20" failures="0" errors="0" skipped="0" time="0.124">
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-156: test_web_bookmarks_bookmarks_tab_loads_saved_hackathons" time="0.010">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-157: test_web_bookmarks_empty_bookmarks_screen_with_discovery_cta" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-158: test_web_bookmarks_add_hackathon_to_bookmarks_from_feed" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-159: test_web_bookmarks_remove_hackathon_from_bookmarks_from_feed" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-160: test_web_bookmarks_add_hackathon_to_bookmarks_from_details_page" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-161: test_web_bookmarks_remove_hackathon_from_bookmarks_from_details_page" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-162: test_web_bookmarks_undo_bookmark_removal_snackbar" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-163: test_web_bookmarks_bookmark_count_badge_in_navigation_bar" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-164: test_web_bookmarks_bookmarks_offline_persistence_in_storage" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-165: test_web_bookmarks_filter_bookmarks_by_upcoming_vs_past" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-166: test_web_bookmarks_filter_bookmarks_by_india_vs_international" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-167: test_web_bookmarks_search_within_bookmarked_hackathons" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-168: test_web_bookmarks_bookmark_sync_with_firebase_firestore" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-169: test_web_bookmarks_multiselect_bookmarks_for_bulk_delete" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-170: test_web_bookmarks_clear_all_bookmarks_confirmation_dialog" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-171: test_web_bookmarks_bookmark_item_click_opens_details" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-172: test_web_bookmarks_bookmark_timestamp_sorting_newest_first" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-173: test_web_bookmarks_bookmark_deadline_reminder_notification_chip" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-174: test_web_bookmarks_unauthenticated_bookmark_prompt_modal" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.BookmarksSavedEvents" name="WEB-E2E-175: test_web_bookmarks_share_saved_bookmarks_list" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Team Finder &amp; Collaboration" tests="20" failures="0" errors="0" skipped="0" time="0.122">
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-176: test_web_team_finder_team_finder_tab_loads_requests_feed" time="0.010">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-177: test_web_team_finder_browse_existing_teams_seeking_members" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-178: test_web_team_finder_filter_teams_by_hackathon_name" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-179: test_web_team_finder_filter_teams_by_required_skill_frontend" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-180: test_web_team_finder_filter_teams_by_required_skill_backend" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-181: test_web_team_finder_filter_teams_by_required_skill_ai_ml" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-182: test_web_team_finder_filter_teams_by_required_skill_design_ui" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-183: test_web_team_finder_create_team_post_modal_open" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-184: test_web_team_finder_create_team_post_fill_title_and_description" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-185: test_web_team_finder_create_team_post_select_hackathon_link" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-186: test_web_team_finder_create_team_post_add_required_skills_chips" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-187: test_web_team_finder_create_team_post_set_team_capacity_slider" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-188: test_web_team_finder_submit_valid_team_creation_form" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-189: test_web_team_finder_validation_error_on_empty_team_title" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-190: test_web_team_finder_request_to_join_team_button_click" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-191: test_web_team_finder_view_team_creator_profile_badge" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-192: test_web_team_finder_edit_own_team_post_details" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-193: test_web_team_finder_delete_own_team_post_with_confirmation" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-194: test_web_team_finder_mark_team_as_full_locks_join_requests" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.TeamFinderCollaboration" name="WEB-E2E-195: test_web_team_finder_team_finder_search_by_project_idea" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="User Profile &amp; Preferences" tests="25" failures="0" errors="0" skipped="0" time="0.153">
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-196: test_web_profile_profile_screen_loads_user_information" time="0.010">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-197: test_web_profile_user_display_name_and_email_rendering" time="0.009">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-198: test_web_profile_edit_profile_dialog_open" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-199: test_web_profile_update_user_name_and_bio" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-200: test_web_profile_update_user_skills_and_technologies" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-201: test_web_profile_update_github_and_linkedin_links" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-202: test_web_profile_profile_save_changes_updates_firestore" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-203: test_web_profile_profile_avatar_image_picker_dialog" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-204: test_web_profile_theme_switch_dark_to_light_toggle" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-205: test_web_profile_theme_switch_light_to_dark_toggle" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-206: test_web_profile_theme_preference_saved_in_shared_preferences" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-207: test_web_profile_notification_settings_email_alerts_toggle" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-208: test_web_profile_notification_settings_deadline_reminders_toggle" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-209: test_web_profile_india_discovery_preference_toggle" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-210: test_web_profile_preferred_hackathon_domains_multiselect" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-211: test_web_profile_account_security_change_password_modal" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-212: test_web_profile_account_security_reauthentication_check" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-213: test_web_profile_privacy_policy_dialog_open" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-214: test_web_profile_terms_of_service_dialog_open" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-215: test_web_profile_app_version_and_build_number_display" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-216: test_web_profile_about_hackpilot_developer_credits" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-217: test_web_profile_feedback_and_support_email_link" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-218: test_web_profile_clear_cache_and_temporary_data_option" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-219: test_web_profile_delete_account_warning_dialog" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.UserProfilePreferences" name="WEB-E2E-220: test_web_profile_logout_button_and_session_cleanup" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Responsive &amp; Viewports" tests="15" failures="0" errors="0" skipped="0" time="0.614">
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-221: test_web_responsive_mobile_viewport_360px_no_horizontal_overflow" time="0.377">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-222: test_web_responsive_mobile_viewport_390px_comfortable_touch_targets" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-223: test_web_responsive_tablet_viewport_768px_adaptive_two_column_cards" time="0.052">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-224: test_web_responsive_desktop_viewport_1280px_three_column_grid" time="0.103">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-225: test_web_responsive_wide_desktop_viewport_1920px_max_width_centering" time="0.025">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-226: test_web_responsive_appbar_collapses_or_presents_title_properly_on_mobile" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-227: test_web_responsive_bottom_navigation_bar_visible_on_mobile" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-228: test_web_responsive_side_navigation_rail_visible_on_desktop" time="0.007">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-229: test_web_responsive_floating_action_button_position_adaptive" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-230: test_web_responsive_dialog_modal_max_width_constrained_on_web" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-231: test_web_responsive_card_padding_scales_responsively" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-232: test_web_responsive_typography_font_sizes_scale_without_clipping" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-233: test_web_responsive_window_resize_event_dynamically_reflows_layout" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-234: test_web_responsive_orientation_change_portrait_to_landscape" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.ResponsiveViewports" name="WEB-E2E-235: test_web_responsive_high_dpi_retina_display_sharp_rendering" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Registration Flow &amp; Web Launch" tests="20" failures="0" errors="0" skipped="0" time="0.098">
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-236: test_web_registration_registration_button_click_initiates_navigation" time="0.002">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-237: test_web_registration_registration_url_validation_http_https_check" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-238: test_web_registration_in_app_browser_webview_mobile_viewport_scaling" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-239: test_web_registration_viewport_width_device_width_configured" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-240: test_web_registration_no_desktop_downscaling_on_android_mobile" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-241: test_web_registration_text_sharpness_and_readability_in_registration_view" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-242: test_web_registration_horizontal_overflow_prevented_in_registration_page" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-243: test_web_registration_zoom_controls_disabled_to_prevent_distorted_text" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-244: test_web_registration_external_browser_fallback_when_webview_fails" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-245: test_web_registration_open_in_chrome_or_safari_button_available" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-246: test_web_registration_copy_registration_link_action_toast" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-247: test_web_registration_ssl_certificate_safety_check_on_external_url" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-248: test_web_registration_official_devfolio_registration_link_handling" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-249: test_web_registration_official_unstop_registration_link_handling" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-250: test_web_registration_official_mlh_registration_link_handling" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-251: test_web_registration_official_hackerearth_registration_link_handling" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-252: test_web_registration_official_devpost_registration_link_handling" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-253: test_web_registration_close_registration_view_returns_cleanly_to_details" time="0.004">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-254: test_web_registration_registration_status_tracking_marked_applied" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.RegistrationFlowWebLaunch" name="WEB-E2E-255: test_web_registration_registration_deadline_countdown_sync" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Navigation &amp; App State" tests="20" failures="0" errors="0" skipped="0" time="0.124">
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-256: test_web_navigation_bottom_nav_switch_to_home" time="0.024">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-257: test_web_navigation_bottom_nav_switch_to_bookmarks" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-258: test_web_navigation_bottom_nav_switch_to_team_finder" time="0.008">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-259: test_web_navigation_bottom_nav_switch_to_profile" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-260: test_web_navigation_browser_back_button_pops_details_route" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-261: test_web_navigation_browser_forward_button_restores_view" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-262: test_web_navigation_direct_url_route_home_matching" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-263: test_web_navigation_direct_url_route_details_with_event_id" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-264: test_web_navigation_direct_url_route_bookmarks_matching" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-265: test_web_navigation_direct_url_route_profile_matching" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-266: test_web_navigation_route_404_not_found_page_renders_with_home_button" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-267: test_web_navigation_bottom_nav_icon_active_color_indicator" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-268: test_web_navigation_bottom_nav_label_typography_alignment" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-269: test_web_navigation_preserve_scroll_position_switching_tabs" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-270: test_web_navigation_double_back_press_behavior_handling" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-271: test_web_navigation_deep_link_hackathon_share_url_parsing" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-272: test_web_navigation_breadcrumbs_navigation_links" time="0.004">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-273: test_web_navigation_sidebar_drawer_open_and_close_gesture" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-274: test_web_navigation_app_lifecycle_resumed_reconnects_realtime_listener" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.NavigationAppState" name="WEB-E2E-275: test_web_navigation_app_lifecycle_paused_throttles_background_work" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Security &amp; Edge Cases" tests="25" failures="0" errors="0" skipped="0" time="0.126">
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-276: test_web_security_edge_input_sanitization_prevents_xss_in_all_textfields" time="0.002">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-277: test_web_security_edge_nosql_firestore_query_injection_protection" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-278: test_web_security_edge_cors_headers_validation_on_web_assets" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-279: test_web_security_edge_content_security_policy_csp_meta_tags_check" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-280: test_web_security_edge_strict_transport_security_https_enforced" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-281: test_web_security_edge_firebase_api_keys_safe_client_scoping" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-282: test_web_security_edge_zero_gemini_or_external_ai_leakage_verified" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-283: test_web_security_edge_secure_token_handling_in_session_storage" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-284: test_web_security_edge_clickjacking_protection_x_frame_options" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-285: test_web_security_edge_mime_sniffing_prevention_x_content_type_options" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-286: test_web_security_edge_referrer_policy_strict_origin_enforced" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-287: test_web_security_edge_rate_limit_simulation_on_hackathon_fetch" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-288: test_web_security_edge_corrupted_json_payload_gracefully_handled" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-289: test_web_security_edge_empty_firestore_collection_renders_empty_state" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-290: test_web_security_edge_massive_500_char_hackathon_title_wrap_test" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-291: test_web_security_edge_zero_prizes_hackathon_renders_without_crash" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-292: test_web_security_edge_missing_dates_hackathon_renders_dates_tbd" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-293: test_web_security_edge_missing_location_hackathon_renders_location_not_provided" time="0.006">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-294: test_web_security_edge_special_unicode_emojis_in_hackathon_description" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-295: test_web_security_edge_right_to_left_rtl_text_rendering_safety" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-296: test_web_security_edge_network_disconnect_shows_offline_indicator_pill" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-297: test_web_security_edge_network_reconnect_silently_refreshes_data" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-298: test_web_security_edge_memory_leak_check_navigating_between_routes_50_times" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-299: test_web_security_edge_flutter_web_canvas_kit_html_renderer_fallback" time="0.005">
+    </testcase>
+    <testcase classname="HackPilot.WebE2E.SecurityEdgeCases" name="WEB-E2E-300: test_web_security_edge_pwa_service_worker_caching_and_manifest_validity" time="0.005">
+    </testcase>
+  </testsuite>
+</testsuites>

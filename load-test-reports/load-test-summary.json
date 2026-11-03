@@ -1,0 +1,145 @@
+{
+  "title": "HackPilot Multi-Stage Web & API Load Testing Report",
+  "timestamp": "2026-11-03T04:32:06.398251+00:00",
+  "target_url": "http://127.0.0.1:8080",
+  "overall_status": "PASS",
+  "metrics": {
+    "total_duration_sec": 19.48,
+    "total_requests": 20787,
+    "successful_requests": 20708,
+    "failed_requests": 79,
+    "error_rate_pct": 0.38,
+    "overall_rps": 1066.89,
+    "latency_ms": {
+      "min": 0.41,
+      "avg": 36.7,
+      "median_p50": 1.03,
+      "p90": 2.3,
+      "p95": 14.92,
+      "p99": 1525.02,
+      "max": 2045.92
+    }
+  },
+  "thresholds": {
+    "max_error_rate_pct": 1.0,
+    "max_p95_latency_ms": 2000.0,
+    "meets_error_rate": true,
+    "meets_p95_latency": true
+  },
+  "status_code_distribution": {
+    "200": 20708,
+    "Error/Timeout": 79
+  },
+  "stages": [
+    {
+      "stage": "Smoke Load",
+      "vus": 5,
+      "duration_sec": 3.03,
+      "total_requests": 1998,
+      "passed": 1998,
+      "failed": 0,
+      "rps": 659.14,
+      "avg_latency_ms": 2.15,
+      "p95_latency_ms": 16.73
+    },
+    {
+      "stage": "Normal Load",
+      "vus": 25,
+      "duration_sec": 4.4,
+      "total_requests": 5798,
+      "passed": 5798,
+      "failed": 0,
+      "rps": 1318.68,
+      "avg_latency_ms": 12.35,
+      "p95_latency_ms": 2.44
+    },
+    {
+      "stage": "Medium Load",
+      "vus": 50,
+      "duration_sec": 5.15,
+      "total_requests": 5900,
+      "passed": 5895,
+      "failed": 5,
+      "rps": 1145.31,
+      "avg_latency_ms": 31.2,
+      "p95_latency_ms": 4.47
+    },
+    {
+      "stage": "Higher Load",
+      "vus": 100,
+      "duration_sec": 6.4,
+      "total_requests": 7091,
+      "passed": 7017,
+      "failed": 74,
+      "rps": 1107.65,
+      "avg_latency_ms": 70.91,
+      "p95_latency_ms": 509.88
+    }
+  ],
+  "endpoints": {
+    "Web Root / Entrypoint": {
+      "path": "/",
+      "total_requests": 2916,
+      "failed_requests": 10,
+      "error_rate_pct": 0.34,
+      "avg_latency_ms": 36.35,
+      "p95_latency_ms": 11.62
+    },
+    "Flutter Web Bootstrap": {
+      "path": "/index.html",
+      "total_requests": 3347,
+      "failed_requests": 9,
+      "error_rate_pct": 0.27,
+      "avg_latency_ms": 29.19,
+      "p95_latency_ms": 11.37
+    },
+    "PWA Manifest": {
+      "path": "/manifest.json",
+      "total_requests": 2500,
+      "failed_requests": 8,
+      "error_rate_pct": 0.32,
+      "avg_latency_ms": 39.13,
+      "p95_latency_ms": 17.03
+    },
+    "Flutter Engine Loader": {
+      "path": "/flutter.js",
+      "total_requests": 2447,
+      "failed_requests": 11,
+      "error_rate_pct": 0.45,
+      "avg_latency_ms": 40.42,
+      "p95_latency_ms": 19.81
+    },
+    "Version & Build Metadata": {
+      "path": "/version.json",
+      "total_requests": 2651,
+      "failed_requests": 12,
+      "error_rate_pct": 0.45,
+      "avg_latency_ms": 34.91,
+      "p95_latency_ms": 16.4
+    },
+    "Font Manifest": {
+      "path": "/assets/FontManifest.json",
+      "total_requests": 2102,
+      "failed_requests": 11,
+      "error_rate_pct": 0.52,
+      "avg_latency_ms": 42.78,
+      "p95_latency_ms": 13.83
+    },
+    "Asset Manifest": {
+      "path": "/assets/AssetManifest.json",
+      "total_requests": 2454,
+      "failed_requests": 12,
+      "error_rate_pct": 0.49,
+      "avg_latency_ms": 36.84,
+      "p95_latency_ms": 10.95
+    },
+    "Service Health Check": {
+      "path": "/api/health",
+      "total_requests": 2370,
+      "failed_requests": 6,
+      "error_rate_pct": 0.25,
+      "avg_latency_ms": 37.76,
+      "p95_latency_ms": 14.37
+    }
+  }
+}

@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // 1. Hackathons Collection: Public read, administrative write
+    match /hackathon collections/{hackathonId} {
+      allow read: if true;
+      allow write: if isAuthenticated() && request.auth.token.admin == true;
+    }
+
+    // 2. User Bookmarks Subcollection: Strict user isolation
+    match /users/{userId}/bookmarks/{bookmarkId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // 3. User Profiles Collection: Owner read/write
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // 4. Teams Collection: Authenticated read & create, controlled member updates
+    match /teams/{teamId} {
+      allow read: if true;
+      allow create: if isAuthenticated() 
+                    && request.resource.data.leader == request.auth.token.email
+                    && request.resource.data.members.size() <= request.resource.data.maxMembers;
+      allow update: if isAuthenticated()
+                    // Allow joining team if not full
+                    && request.resource.data.members.size() <= request.resource.data.maxMembers
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members']);
+      allow delete: if isAuthenticated() 
+                    && (resource.data.leader == request.auth.token.email || request.auth.token.admin == true);
+    }
+  }
+}
+

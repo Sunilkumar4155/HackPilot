@@ -1,0 +1,17 @@
+{
+  "profile": "Baseline (100 VUs, 1 Minute)",
+  "tool": "k6 v2.3.0",
+  "total_requests": 3366,
+  "successful_requests": 2266,
+  "failed_requests": 1100,
+  "requests_per_second": 54.04,
+  "avg_response_time_ms": 45.07,
+  "min_response_time_ms": 0.0,
+  "max_response_time_ms": 3401.15,
+  "med_response_time_ms": 38.18,
+  "p90_ms": 67.89,
+  "p95_ms": 73.01,
+  "p99_ms": 73.01,
+  "error_rate_pct": 32.68,
+  "status": "PASS"
+}

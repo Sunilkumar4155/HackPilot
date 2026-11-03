@@ -359,6 +359,7 @@ class _BookmarkCard extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => HackathonDetailsScreen(
+          hackathon: event,
           hackathonId: event.id,
           title: event.title,
           organizer: event.organizer,

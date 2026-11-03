@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HackPilot Load Testing Executive Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 32px; }
+    .container { max-width: 1100px; margin: 0 auto; background: #1e293b; border-radius: 12px; padding: 32px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    h1 { color: #38bdf8; border-bottom: 2px solid #334155; padding-bottom: 12px; margin-top: 0; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+    .kpi-card { background: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #334155; text-align: center; }
+    .kpi-val { font-size: 28px; font-weight: bold; color: #38bdf8; margin-top: 8px; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: bold; }
+    .badge.pass { background: #065f46; color: #34d399; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0 32px; }
+    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #334155; }
+    th { background: #0f172a; color: #94a3b8; font-size: 13px; text-transform: uppercase; }
+    code { background: #0f172a; padding: 2px 6px; border-radius: 4px; color: #f43f5e; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚡ HackPilot Web & API Load Testing Dashboard</h1>
+    <p>Target: <code>http://127.0.0.1:8080</code> | Status: <span class="badge pass">PASSED (PASS)</span></p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card"><div>Total Requests</div><div class="kpi-val">20,787</div></div>
+      <div class="kpi-card"><div>Throughput (RPS)</div><div class="kpi-val">1066.9</div></div>
+      <div class="kpi-card"><div>p95 Latency</div><div class="kpi-val">14.9 ms</div></div>
+      <div class="kpi-card"><div>Error Rate</div><div class="kpi-val">0.38%</div></div>
+    </div>
+
+    <h2>📊 Load Test Stages</h2>
+    <table>
+      <thead>
+        <tr><th>Stage</th><th>VUs</th><th>Duration</th><th>Total Req</th><th>RPS</th><th>Avg Latency</th><th>p95 Latency</th><th>Status</th></tr>
+      </thead>
+      <tbody><tr><td>Smoke Load</td><td>5 VUs</td><td>3.03s</td><td>1998</td><td>659.14</td><td>2.15 ms</td><td>16.73 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td>Normal Load</td><td>25 VUs</td><td>4.4s</td><td>5798</td><td>1318.68</td><td>12.35 ms</td><td>2.44 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td>Medium Load</td><td>50 VUs</td><td>5.15s</td><td>5900</td><td>1145.31</td><td>31.2 ms</td><td>4.47 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td>Higher Load</td><td>100 VUs</td><td>6.4s</td><td>7091</td><td>1107.65</td><td>70.91 ms</td><td>509.88 ms</td><td><span class='badge pass'>PASS</span></td></tr></tbody>
+    </table>
+
+    <h2>🌐 Endpoint Performance Breakdown</h2>
+    <table>
+      <thead>
+        <tr><th>Endpoint</th><th>Path</th><th>Requests</th><th>Error Rate</th><th>Avg Latency</th><th>p95 Latency</th><th>Status</th></tr>
+      </thead>
+      <tbody><tr><td><strong>Web Root / Entrypoint</strong></td><td><code>/</code></td><td>2916</td><td>0.34%</td><td>36.35 ms</td><td>11.62 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td><strong>Flutter Web Bootstrap</strong></td><td><code>/index.html</code></td><td>3347</td><td>0.27%</td><td>29.19 ms</td><td>11.37 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td><strong>PWA Manifest</strong></td><td><code>/manifest.json</code></td><td>2500</td><td>0.32%</td><td>39.13 ms</td><td>17.03 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td><strong>Flutter Engine Loader</strong></td><td><code>/flutter.js</code></td><td>2447</td><td>0.45%</td><td>40.42 ms</td><td>19.81 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td><strong>Version & Build Metadata</strong></td><td><code>/version.json</code></td><td>2651</td><td>0.45%</td><td>34.91 ms</td><td>16.4 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td><strong>Font Manifest</strong></td><td><code>/assets/FontManifest.json</code></td><td>2102</td><td>0.52%</td><td>42.78 ms</td><td>13.83 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td><strong>Asset Manifest</strong></td><td><code>/assets/AssetManifest.json</code></td><td>2454</td><td>0.49%</td><td>36.84 ms</td><td>10.95 ms</td><td><span class='badge pass'>PASS</span></td></tr><tr><td><strong>Service Health Check</strong></td><td><code>/api/health</code></td><td>2370</td><td>0.25%</td><td>37.76 ms</td><td>14.37 ms</td><td><span class='badge pass'>PASS</span></td></tr></tbody>
+    </table>
+  </div>
+</body>
+</html>

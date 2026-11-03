@@ -153,6 +153,20 @@ class ExternalHackathonService {
     final rawImageUrl = Hackathon.imageUrlFrom(event);
     final imageUrl = _normalizeImageUrl(rawImageUrl);
 
+    final officialWebsite =
+        (event['url'] ?? event['website'] ?? '').toString().trim();
+    final startDate =
+        (event['startAt'] ?? event['startDate'] ?? '').toString().trim();
+    final endDate =
+        (event['endAt'] ?? event['endDate'] ?? '').toString().trim();
+    final venue = (event['venue'] ?? '').toString().trim();
+    final parsedThemes = (themes is List)
+        ? themes
+            .map((t) => t.toString().trim())
+            .where((t) => t.isNotEmpty)
+            .toList()
+        : <String>[];
+
     return Hackathon(
       id: 'external_$id',
       title: title,
@@ -165,6 +179,11 @@ class ExternalHackathonService {
       teamSize: 'See event details',
       registrationLink: registrationLink,
       imageUrl: imageUrl,
+      officialWebsite: officialWebsite,
+      startDate: startDate,
+      endDate: endDate,
+      venue: venue,
+      themes: parsedThemes,
     );
   }
 
