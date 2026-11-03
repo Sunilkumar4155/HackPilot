@@ -1,12 +1,6 @@
 name: HackPilot Security & Vulnerability Audit
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-  schedule:
-    - cron: '0 0 * * 0' # Weekly Sunday audit
   workflow_dispatch:
 
 jobs:

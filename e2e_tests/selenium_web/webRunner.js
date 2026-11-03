@@ -11,8 +11,9 @@ const testCases = require('./testCases');
  * @param {string} baseUrl The target URL where the actual HackPilot web application is served.
  * @returns {Promise<Object>}
  */
-async function executeWebTests(baseUrl = 'http://localhost:8080') {
-  console.log(`[Web Runner] Initializing HackPilot Genuine E2E Test Suite against ${baseUrl} (300 Test Cases)...`);
+async function executeWebTests(baseUrl = 'http://127.0.0.1:8080') {
+  const targetBaseUrl = (baseUrl || 'http://127.0.0.1:8080').replace('localhost', '127.0.0.1');
+  console.log(`[Web Runner] Initializing HackPilot Genuine E2E Test Suite against ${targetBaseUrl} (300 Test Cases)...`);
   const logs = [];
   const passed = [];
   const failed = [];
@@ -29,7 +30,7 @@ async function executeWebTests(baseUrl = 'http://localhost:8080') {
   };
 
   log('INFO', 'Starting HackPilot Genuine Web E2E Test Suite (300 Real Test Cases)');
-  log('INFO', `Target Base URL: ${baseUrl}`);
+  log('INFO', `Target Base URL: ${targetBaseUrl}`);
 
   const options = new chrome.Options();
   options.addArguments('--headless=new');
@@ -52,8 +53,8 @@ async function executeWebTests(baseUrl = 'http://localhost:8080') {
 
   try {
     // 1. Initial live probe of the actual HackPilot Web App
-    log('INFO', `Navigating Chrome to actual HackPilot web app at ${baseUrl}...`);
-    await driver.get(baseUrl);
+    log('INFO', `Navigating Chrome to actual HackPilot web app at ${targetBaseUrl}...`);
+    await driver.get(targetBaseUrl);
 
     // Wait for the page body to load
     await driver.wait(until.elementLocated(By.css('body')), 15000);
@@ -96,29 +97,29 @@ async function executeWebTests(baseUrl = 'http://localhost:8080') {
           await driver.wait(until.elementLocated(By.css('body')), 5000);
         } else if (test.id === 'WEB-E2E-031') {
           // Discovery Feed
-          await driver.get(`${baseUrl}/#/`);
+          await driver.get(`${targetBaseUrl}/#/`);
           await driver.executeScript('window.scrollTo(0, 200);');
         } else if (test.id === 'WEB-E2E-056') {
           // India filter route
-          await driver.get(`${baseUrl}/#/india`);
+          await driver.get(`${targetBaseUrl}/#/india`);
           const currentUrl = await driver.getCurrentUrl();
-          if (!currentUrl.includes('india') && !currentUrl.includes(baseUrl)) {
+          if (!currentUrl.includes('india') && !currentUrl.includes(targetBaseUrl)) {
             throw new Error(`Unexpected URL state: ${currentUrl}`);
           }
         } else if (test.id === 'WEB-E2E-116') {
           // Hackathon Details & Official CTA
-          await driver.get(`${baseUrl}/#/details`);
+          await driver.get(`${targetBaseUrl}/#/details`);
           const detailsScreenshot = await driver.takeScreenshot();
           fs.writeFileSync(path.join(screenshotDir, 'web_e2e_hackathon_details.png'), detailsScreenshot, 'base64');
         } else if (test.id === 'WEB-E2E-156') {
           // Bookmarks
-          await driver.get(`${baseUrl}/#/bookmarks`);
+          await driver.get(`${targetBaseUrl}/#/bookmarks`);
         } else if (test.id === 'WEB-E2E-176') {
           // Team Finder
-          await driver.get(`${baseUrl}/#/team-finder`);
+          await driver.get(`${targetBaseUrl}/#/team-finder`);
         } else if (test.id === 'WEB-E2E-196') {
           // User Profile
-          await driver.get(`${baseUrl}/#/profile`);
+          await driver.get(`${targetBaseUrl}/#/profile`);
         } else if (test.id === 'WEB-E2E-221') {
           // Mobile viewport 360x780
           await driver.manage().window().setRect({ width: 360, height: 780 });

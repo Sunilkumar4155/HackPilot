@@ -38,7 +38,7 @@ async function main() {
 
     const webStart = Date.now();
     try {
-      const targetUrl = process.env.BASE_URL || 'http://localhost:8080';
+      const targetUrl = (process.env.BASE_URL || 'http://127.0.0.1:8080').replace('localhost', '127.0.0.1');
       const results = await executeWebTests(targetUrl);
       const webEnd = Date.now();
 
