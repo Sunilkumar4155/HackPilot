@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "931938207103",
+    "firebase_url": "https://ai-hackathon-finder-default-rtdb.firebaseio.com",
+    "project_id": "ai-hackathon-finder",
+    "storage_bucket": "ai-hackathon-finder.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931938207103:android:f572a06f9aea3c67b3464a",
+        "android_client_info": {
+          "package_name": "com.example.ai_hackathon_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931938207103-7jf4egdhf6foerih31gb9rdn6i68hkac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf2tdVXeTWxGuEQUUNMYEncOUJyCgqkkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931938207103-7jf4egdhf6foerih31gb9rdn6i68hkac.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "931938207103-oigu9e229750uiqnv1vn4b9u11lncqk3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aiHackathonFinder"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
